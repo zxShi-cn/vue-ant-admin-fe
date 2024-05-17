@@ -46,7 +46,7 @@ export const useUserStore = defineStore(
             try {
                 // 获取用户信息并保存
                 const userInfoData = await Api.account.accountProfile();
-                userInfo.value = userInfoData;
+                userInfo.value = userInfoData as typeof userInfo.value;
 
             } catch (error) {
                 return Promise.reject(error);
