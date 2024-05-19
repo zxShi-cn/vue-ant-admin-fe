@@ -7,12 +7,12 @@ export async function accountProfile() {
 
 // 获取用户权限
 export async function accountPermissions() {
-    return service.get('/account/permissions');
+    return service.get<string[]>('/account/permissions');
 }
 
 // 获取菜单列表
 export async function accountMenus() {
-    return service.get('/account/menus');
+    return service.get<API.AccountMenus[]>('/account/menus');
 }
 
 // 用户登出

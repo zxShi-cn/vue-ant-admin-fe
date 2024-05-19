@@ -3,20 +3,7 @@
         <a-layout-sider class="layout-sider" v-model:collapsed="collapsed" :trigger="null" collapsible>
             <!-- 通过collapsed传递值，同步隐藏标题 -->
             <logo-icon :collapsed="collapsed"></logo-icon>
-            <a-menu v-model:selectedKeys="selectedKeys" theme="dark" mode="inline">
-                <a-menu-item key="1">
-                    <user-outlined />
-                    <span>nav 1</span>
-                </a-menu-item>
-                <a-menu-item key="2">
-                    <video-camera-outlined />
-                    <span>nav 2</span>
-                </a-menu-item>
-                <a-menu-item key="3">
-                    <upload-outlined />
-                    <span>nav 3</span>
-                </a-menu-item>
-            </a-menu>
+            <layout-menu :collapsed="collapsed"></layout-menu>
         </a-layout-sider>
         <a-layout>
             <layout-header v-model:collapsed="collapsed"></layout-header>
@@ -32,17 +19,9 @@
 import LogoIcon from '@/layout/logo/LogoIcon.vue';
 import LayoutFooter from './footer/LayoutFooter.vue';
 import LayoutHeader from './header/LayoutHeader.vue';
+import LayoutMenu from './menu/LayoutMenu.vue';
 import { ref } from 'vue';
-import {
-    UserOutlined,
-    VideoCameraOutlined,
-    UploadOutlined,
-    MenuUnfoldOutlined,
-    MenuFoldOutlined,
-} from '@ant-design/icons-vue';
-import service from '@/utils/request';
-// import axios from 'axios';
-const selectedKeys = ref<string[]>(['1']);
+
 const collapsed = ref<boolean>(false);
 
 // // 测试
