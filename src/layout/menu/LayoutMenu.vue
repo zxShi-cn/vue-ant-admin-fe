@@ -1,32 +1,23 @@
 <template>
     <div class="menu-main">
-        <a-menu v-model:selectedKeys="selectedKeys" theme="dark" mode="inline" :open-keys="openKeys" :collapsed="collapsed" collapsible
-            @click="clickMenuItem">
+        <a-menu v-model:selectedKeys="selectedKeys" theme="dark" mode="inline" :open-keys="openKeys"
+            :collapsed="collapsed" collapsible @click="clickMenuItem">
             <template v-for="item in menus" :key="item.name">
                 <sub-menu-item :collapsed="props.collapsed" :item="item"></sub-menu-item>
             </template>
-            <!-- <a-menu-item key="1">
-                <user-outlined />
-                <span>nav 1</span>
-            </a-menu-item> -->
         </a-menu>
     </div>
 </template>
 
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue';
-import {
-    UserOutlined,
-} from '@ant-design/icons-vue';
 import { usePermissionStore } from '@/stores/permissionStore';
-import { useUserStore } from '@/stores/userStore';
 import SubMenuItem from './components/SubMenuItem.vue'
 import { type MenuProps } from 'ant-design-vue/es/menu/src/Menu';
 import { useRoute, useRouter } from 'vue-router';
 import { LOGIN_NAME } from '@/router/constant';
 
 const permissionStore = usePermissionStore();
-// const userStore = useUserStore();
 // 获取当前路由
 const currentRoute = useRoute();
 const router = useRouter();
@@ -76,7 +67,7 @@ watch(
 
 // 查找对应路由
 const getRouteByName = (name: string) => {
-    return router.getRoutes().find((n) => n.name === name);
+    return router.getRoutes().find((n) => n.name === name)
 }
 
 // 点击菜单

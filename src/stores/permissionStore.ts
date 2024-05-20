@@ -53,6 +53,7 @@ export const usePermissionStore = defineStore(
             const routes = filterRoutes(asyncRoutes, roleList);
             // 生成菜单
             menuList.value = sortMenus(routes);
+            userStore.menus = menuList.value;
             return routes;
         }
 
@@ -61,5 +62,5 @@ export const usePermissionStore = defineStore(
             menuList,
             externalLink,
         };
-    }
+    },
 );

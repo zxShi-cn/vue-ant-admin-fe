@@ -1,7 +1,7 @@
 import Api from "@/api";
 import { ref } from "vue";
 import { defineStore } from "pinia";
-import { useRouter, type RouteRecordRaw } from "vue-router";
+import { useRouter, type Router, type RouteRecordRaw } from "vue-router";
 import { resetRouter } from "@/router";
 import { usePermissionStore } from "./permissionStore";
 
@@ -61,8 +61,8 @@ export const useUserStore = defineStore(
 
         // 获取用户权限和路由
         const fetchPermisionsAndMenus = async ()=>{
-            const permissionStore = usePermissionStore();
             const router = useRouter();
+            const permissionStore = usePermissionStore();
             // 获取用户权限
             const permissionData = await Api.account.accountPermissions();
             permissions.value = permissionData.data;
@@ -71,8 +71,16 @@ export const useUserStore = defineStore(
             // const menuData = await Api.account.accountMenus();
             // 生成动态路由菜单
             const routes = await permissionStore.buildRoutes();
-            // console.log(routes);
             // 添加路由
+            routes.forEach((route) => {
+                router.addRoute(route);
+            })
+        }
+
+        const reloadRoutes = async (router: Router) => {
+            const permissionStore = usePermissionStore();
+            // 添加路由
+            const routes= await permissionStore.buildRoutes();
             routes.forEach((route) => {
                 router.addRoute(route);
             })
@@ -94,6 +102,7 @@ export const useUserStore = defineStore(
             logout,
             clearLoginStatus,
             fetchPermisionsAndMenus,
+            reloadRoutes,
         }
     },
     {

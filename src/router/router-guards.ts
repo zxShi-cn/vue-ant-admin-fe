@@ -4,6 +4,7 @@ import { useUserStore } from "@/stores/userStore";
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
 import { Modal } from "ant-design-vue";
+import { usePermissionStore } from "@/stores/permissionStore";
 
 NProgress.configure({ showSpinner: false}) // 隐藏螺旋加载
 
@@ -16,6 +17,7 @@ export function createRouterGuards(router: Router, whiteNameList: whiteNameList)
             NProgress.start();
         }
         const userStore = useUserStore();
+        const permissionStore = usePermissionStore();
         // 如果有token
         if (userStore.token) {
             // 前往登录页
@@ -25,8 +27,8 @@ export function createRouterGuards(router: Router, whiteNameList: whiteNameList)
             } else {
                 // 非登录页，校验权限
                 const hasRoute = router.hasRoute(to.name!);
-                // 如果无权限
-                if (userStore.permissions.length === 0) {
+                // 如果路由菜单不存在
+                if (permissionStore.menuList.length === 0) {
                     try {
                         // 获取用户权限
                         await userStore.fetchPermisionsAndMenus();
@@ -36,19 +38,21 @@ export function createRouterGuards(router: Router, whiteNameList: whiteNameList)
                         Modal.destroyAll();
                         return next({path: '/login'});
                     }
-                    // 要前往404页面,获取路径进行替换
-                    if (to.name === PAGE_NOT_FOUND_NAME) {
-                        next({path: to.fullPath, replace: true});
-                    }
-                    // 如果路径不存在，可能是动态注册的路由，需要再次重定向
-                    else if(!hasRoute) {
-                        next({ ...to, replace: true});
-                    } else {
-                        next();
-                    }
-                } else {
+                }
+                // 要前往404页面,获取路径进行替换
+                else if (to.name === PAGE_NOT_FOUND_NAME) {
+                    // 重新加载路由
+                    userStore.reloadRoutes(router);
+                    next({path: to.fullPath, replace: true});
+                }
+                // 如果路径不存在，可能是动态注册的路由，需要再次重定向
+                else if(!hasRoute) {
+                    next({ ...to, replace: true});
+                }
+                else {
                     next();
                 }
+
             }
         } else {
             // 如果没有token
