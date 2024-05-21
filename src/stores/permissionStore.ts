@@ -9,12 +9,17 @@ export const usePermissionStore = defineStore(
     'permission',
     () => {
         // 定义数据
-        // const isDynamicAddRoute = ref<boolean>(false);
+        const isFirstReload = ref<boolean>(true);
         // const permisisonList = ref<string[]>([]);
         const menuList = ref<RouteRecordRaw[]>([]);
         const externalLink = ref<RouteRecordRaw[]>([]);
 
         // 定义方法
+        const resetState = () => {
+            isFirstReload.value = true;
+            menuList.value = [];
+            externalLink.value = [];
+        }
 
         // 处理菜单
         const sortMenus = (menus: RouteRecordRaw[] = []) => {
@@ -58,7 +63,9 @@ export const usePermissionStore = defineStore(
         }
 
         return {
+            isFirstReload,
             buildRoutes,
+            resetState,
             menuList,
             externalLink,
         };

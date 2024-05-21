@@ -1,3 +1,4 @@
+import { LAYOUT_VIEW } from "@/router/constant";
 import type { RouteRecordRaw } from "vue-router";
 
 const moduleName = 'dashboard';
@@ -11,6 +12,7 @@ const routes: Array<RouteRecordRaw> = [
             title: 'dashboard',
             icon: 'ant-design:dashboard-outlined',
         },
+        component: LAYOUT_VIEW,
         children: [
             {
                 path: 'welcome',

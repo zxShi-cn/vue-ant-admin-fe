@@ -1,8 +1,8 @@
 import Api from "@/api";
 import { ref } from "vue";
 import { defineStore } from "pinia";
-import { useRouter, type Router, type RouteRecordRaw } from "vue-router";
-import { resetRouter } from "@/router";
+import { type Router, type RouteRecordRaw } from "vue-router";
+import router, { resetRouter } from "@/router";
 import { usePermissionStore } from "./permissionStore";
 
 
@@ -19,10 +19,12 @@ export const useUserStore = defineStore(
 
         // 清空登录状态
         const clearLoginStatus = ()=>{
+            const permissionStore = usePermissionStore();
             token.value = '';
             userInfo.value = {};
             permissions.value = [];
             menus.value = [];
+            permissionStore.resetState();
             resetRouter();
             setTimeout(() => {
                 localStorage.clear();
@@ -54,6 +56,7 @@ export const useUserStore = defineStore(
                 // 获取用户信息并保存
                 const userInfoData = await Api.account.accountProfile();
                 userInfo.value = userInfoData.data;
+                await fetchPermisionsAndMenus();
             } catch (error) {
                 return Promise.reject(error);
             }
@@ -61,7 +64,7 @@ export const useUserStore = defineStore(
 
         // 获取用户权限和路由
         const fetchPermisionsAndMenus = async ()=>{
-            const router = useRouter();
+            // const router = useRouter();
             const permissionStore = usePermissionStore();
             // 获取用户权限
             const permissionData = await Api.account.accountPermissions();

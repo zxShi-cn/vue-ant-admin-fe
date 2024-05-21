@@ -22,7 +22,7 @@ export function createRouterGuards(router: Router, whiteNameList: whiteNameList)
         if (userStore.token) {
             // 前往登录页
             if (to.name === LOGIN_NAME) {
-                next({ path: '/dashboard/welcome'});
+                next({ path: '/'});
                 NProgress.done();
             } else {
                 // 非登录页，校验权限
@@ -31,7 +31,7 @@ export function createRouterGuards(router: Router, whiteNameList: whiteNameList)
                 if (permissionStore.menuList.length === 0) {
                     try {
                         // 获取用户权限
-                        await userStore.fetchPermisionsAndMenus();
+                        await userStore.afterLogin();
                     } catch (error) {
                         // 清除token，重定向到登录
                         userStore.clearLoginStatus();
@@ -41,18 +41,24 @@ export function createRouterGuards(router: Router, whiteNameList: whiteNameList)
                 }
                 // 要前往404页面,获取路径进行替换
                 else if (to.name === PAGE_NOT_FOUND_NAME) {
-                    // 重新加载路由
-                    userStore.reloadRoutes(router);
-                    next({path: to.fullPath, replace: true});
+                    if (permissionStore.isFirstReload) {
+                        // 重新加载路由
+                        userStore.reloadRoutes(router);
+                        permissionStore.isFirstReload = false;
+                        return next({path: to.fullPath, replace: true});
+                    } else {
+                        permissionStore.isFirstReload = true;
+                        return next();
+                    }
                 }
                 // 如果路径不存在，可能是动态注册的路由，需要再次重定向
                 else if(!hasRoute) {
-                    next({ ...to, replace: true});
+                    return next({ ...to, replace: true});
                 }
                 else {
-                    next();
+                    permissionStore.isFirstReload = true;
+                    return next();
                 }
-
             }
         } else {
             // 如果没有token

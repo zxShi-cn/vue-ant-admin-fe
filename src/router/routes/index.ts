@@ -5,7 +5,7 @@ import login from "./login";
 export const rootRoute: RouteRecordRaw = {
     path: '/',
     name: 'Layout',
-    // redirect: '/welcome', // 重定向
+    redirect: '/dashboard/welcome', // 重定向
     component: ()=>import('@/layout/LayoutView.vue'), //路由懒加载,提高效率
     meta: {
         title: '根路由',

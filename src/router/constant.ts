@@ -1,4 +1,5 @@
 // 路由常量
+export const LAYOUT_VIEW = ()=>import('@/layout/LayoutView.vue');
 
 export const LOGIN_NAME = 'Login';
 
