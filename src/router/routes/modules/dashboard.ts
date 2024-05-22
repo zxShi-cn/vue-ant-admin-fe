@@ -11,6 +11,7 @@ const routes: Array<RouteRecordRaw> = [
         meta: {
             title: 'dashboard',
             icon: 'ant-design:dashboard-outlined',
+            orderNo: 1,
         },
         component: LAYOUT_VIEW,
         children: [

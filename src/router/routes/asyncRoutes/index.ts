@@ -19,7 +19,7 @@ import type { RouteRecordRaw } from "vue-router";
 // }, {} as Record<string, ImportVueFileFnType>
 // );
 
-const modules = import.meta.glob(['../modules/dashboard.ts','../modules/external-link.ts'], { eager: true});
+const modules = import.meta.glob(['../modules/dashboard.ts','../modules/external-link.ts','../modules/account.ts'], { eager: true});
 const asyncRoutesList: Array<RouteRecordRaw> = [];
 
 Object.keys(modules).forEach((key)=>{

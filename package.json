@@ -1,6 +1,11 @@
 {
   "name": "vue-ant-admin-fe",
   "version": "0.0.0",
+  "author": {
+    "name": "shizhaoxiang",
+    "email": "2490524679@qq.com",
+    "url": "https://github.com/zxShi-cn"
+  },
   "private": true,
   "type": "module",
   "scripts": {
@@ -46,5 +51,9 @@
     "vite": "^5.2.8",
     "vite-plugin-mock": "^3.0.2",
     "vue-tsc": "^2.0.11"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zxShi-cn/vue-ant-admin-fe"
   }
 }
