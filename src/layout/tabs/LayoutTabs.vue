@@ -55,12 +55,9 @@ const changePage = (key: string) => {
 </script>
 
 <style scoped>
-.tabs-main {
-    border-top: 1px solid #eee;
-}
 
 .tabs-view-content {
-    height: calc(100vh - 110px - var(--app-footer-height));
+    min-height: calc(100vh - 110px - var(--app-footer-height));
     padding: 20px 14px 0;
     overflow: auto;
 }

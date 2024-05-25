@@ -25,9 +25,6 @@ import { Layout } from 'ant-design-vue';
 
 const collapsed = ref<boolean>(false);
 
-// // 测试
-// let result = await service.get('api/hello');
-
 </script>
 <style lang="less" scoped>
 .layout-main {
@@ -35,9 +32,9 @@ const collapsed = ref<boolean>(false);
     /* 设置为flex盒子 */
     width: 100vw;
     min-width: 100%;
-    overflow: hidden;
 
     .layout-sider {
+        height: 100vh;
         overflow: hidden;
         /* 溢出时隐藏内容 */
     }
@@ -49,11 +46,15 @@ const collapsed = ref<boolean>(false);
         padding: 24px;
         background: #fff;
         min-height: 72vh;
-        // minHeight: 72vh;
+        overflow: auto;
     }
 }
+// 隐藏滚动条
+// ::-webkit-scrollbar {
+//     display: none; /* Chrome Safari */
+// }
 
 .ant-layout {
-    overflow: hidden;
+    overflow: auto;
 }
 </style>
