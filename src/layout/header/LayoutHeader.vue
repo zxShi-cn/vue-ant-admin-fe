@@ -5,17 +5,7 @@
                 @click="() => $emit('update:collapsed', !collapsed)" />
             <menu-fold-outlined v-else class="trigger" @click="() => $emit('update:collapsed', !collapsed)" />
         </div>
-
-        <a-breadcrumb class="header-bread">
-            <a-breadcrumb-item href="/">
-                <home-outlined />
-            </a-breadcrumb-item>
-            <a-breadcrumb-item href="">
-                <user-outlined />
-                <span>Application List</span>
-            </a-breadcrumb-item>
-            <a-breadcrumb-item>Application</a-breadcrumb-item>
-        </a-breadcrumb>
+        <BreadcrumbView></BreadcrumbView>
         <a-dropdown class="header-avatar" placement="bottom">
             <div>
                 <a-avatar class="avatar" :src="userInfo.avatar" :alt="userInfo.username"
@@ -50,13 +40,12 @@
 <script setup lang="ts">
 import { useUserStore } from '@/stores/userStore';
 import {
-    HomeOutlined,
-    UserOutlined,
     MenuUnfoldOutlined,
     MenuFoldOutlined,
     AntDesignOutlined,
 } from '@ant-design/icons-vue';
 import { useRouter } from 'vue-router';
+import BreadcrumbView from './components/BreadcrumbView.vue';
 
 // 定义数据，接收父组件传值
 defineProps({
