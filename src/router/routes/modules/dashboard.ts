@@ -9,7 +9,7 @@ const routes: Array<RouteRecordRaw> = [
         name: moduleName,
         redirect: '/dashboard/welcome',
         meta: {
-            title: 'dashboard',
+            title: '仪表盘',
             icon: 'ant-design:dashboard-outlined',
             orderNo: 1,
         },
@@ -19,7 +19,7 @@ const routes: Array<RouteRecordRaw> = [
                 path: 'welcome',
                 name: `${moduleName}-welcome`,
                 meta: {
-                    title: '仪表盘',
+                    title: '工作台',
                     icon: 'ant-design:home-filled',
                 },
                 component: ()=>import("@/views/dashboard/DashboardView.vue"),
