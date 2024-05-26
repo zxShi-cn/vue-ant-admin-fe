@@ -1,6 +1,6 @@
 <template>
     <div class="tabs-main">
-        <a-tabs :active-key="activeKey" hide-add type="editable-card" class="tabs" @change="changePage"
+        <a-tabs :active-key="activeKey || '/dashboard/welcome'" hide-add type="editable-card" class="tabs" @change="changePage"
             @edit="editTabItem">
             <a-tab-pane :closable="false" key="/dashboard/welcome" tab="仪表盘"></a-tab-pane>
             <a-tab-pane v-for="tabItem in tabsStore.getTabsList" :tab="tabItem.meta.title" :key="tabItem.fullPath">
