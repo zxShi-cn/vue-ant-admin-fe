@@ -14,15 +14,15 @@ const routes: Array<RouteRecordRaw> = [
             // hideInMenu: false, // 不显示在菜单中
         },
         children: [
-            // {
-            //     path: 'settings',
-            //     name: 'account-settings',
-            //     component: () => import('@/views/account/AccountAbout.vue'),
-            //     meta: {
-            //         title: '个人设置',
-            //         hideInMenu: false,
-            //     }
-            // },
+            {
+                path: 'settings',
+                name: 'account-settings',
+                component: () => import('@/views/account/AccountSettings.vue'),
+                meta: {
+                    title: '个人设置',
+                    hideInMenu: false,
+                }
+            },
             {
                 path: 'about',
                 name: 'account-about',

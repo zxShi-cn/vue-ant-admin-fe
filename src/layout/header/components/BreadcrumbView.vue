@@ -28,7 +28,7 @@
 import {
     HomeOutlined,
 } from '@ant-design/icons-vue';
-import { computed, ref } from 'vue';
+import { computed } from 'vue';
 import { useRoute, useRouter, type RouteRecordRaw } from 'vue-router';
 
 const route = useRoute();

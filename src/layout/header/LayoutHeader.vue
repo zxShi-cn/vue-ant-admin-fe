@@ -19,13 +19,13 @@
             <template #overlay>
                 <a-menu>
                     <a-menu-item>
-                        <a target="_blank" rel="noopener noreferrer" href="http://www.alipay.com/">
-                            1st menu item
+                        <a href="#/account/about">
+                            关于
                         </a>
                     </a-menu-item>
                     <a-menu-item>
-                        <a target="_blank" rel="noopener noreferrer" href="http://www.taobao.com/">
-                            2nd menu item
+                        <a href="#/account/settings">
+                            个人设置
                         </a>
                     </a-menu-item>
                     <a-menu-item @click="logout">
