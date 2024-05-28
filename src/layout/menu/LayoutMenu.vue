@@ -31,7 +31,7 @@ const props = defineProps({
 
 // 选中的菜单
 const selectedKeys = ref<string[]>([currentRoute.name as string]);
-const menus = computed(() => permissionStore.menuList);
+const menus = computed(() => [...permissionStore.menuList, ...permissionStore.externalLink]);
 const openKeys = ref<string[]>([]);
 
 // 获取当前打开的子菜单
@@ -74,7 +74,7 @@ const getRouteByName = (name: string) => {
 const clickMenuItem: MenuProps['onClick'] = ({ key }) => {
     // 和当前路由一样
     if (key === currentRoute.name) return;
-    // 预选中的菜单
+    // 选中的菜单
     const preSelectKey = selectedKeys.value;
     const targetRoute = getRouteByName(key as string);
     const { isExternal, externalOpen } = targetRoute?.meta || {};

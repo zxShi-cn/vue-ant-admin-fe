@@ -43,7 +43,9 @@ export const usePermissionStore = defineStore(
                 return routes.filter((route)=>{
                     // 过滤外链
                     if (route.meta?.isExternal) {
-                        externalLink.value.push(route);
+                        if (!externalLink.value.find((item) => item.path === route.path)) {
+                            externalLink.value.push(route);
+                        }
                         return false;
                     }
                     if (!route.meta?.role)
