@@ -10,6 +10,7 @@ const routes: Array<RouteRecordRaw> = [
         meta: {
             title: '外部链接',
             orderNo: 20,
+            icon: 'LinkOutlined',
         },
         children: [
             {

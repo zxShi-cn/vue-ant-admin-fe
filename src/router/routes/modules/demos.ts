@@ -10,8 +10,8 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import('@/layout/LayoutView.vue'),
         redirect: {name: `${moduleName}-custom-modal`},
         meta: {
-            title: '样例',
-            // icon: 'ant-design:desktop-outlined',
+            title: '样例页面',
+            icon: 'DesktopOutlined',
             orderNo: 2,
         },
         children: [
@@ -20,7 +20,6 @@ const routes: Array<RouteRecordRaw> = [
                 name: `${moduleName}-custom-modal`,
                 meta: {
                     title: '表单',
-                    // icon: 'ant-design:desktop-outlined',
                     // keep: false, //是否缓存页面
                 },
                 component: () => import('@/views/demos/BasicForm.vue'),
@@ -30,7 +29,6 @@ const routes: Array<RouteRecordRaw> = [
                 name: `${moduleName}-button`,
                 meta: {
                     title: '按钮',
-                    // icon: 'ant-design:desktop-outlined',
                     // keep: false,
                 },
                 component: () => import('@/views/demos/BasicButton.vue'),

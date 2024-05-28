@@ -11,6 +11,7 @@ const routes: Array<RouteRecordRaw> = [
         meta: {
             title: '个人中心',
             orderNo: 20,
+            icon: 'UserOutlined',
             // hideInMenu: false, // 不显示在菜单中
         },
         children: [

@@ -1,6 +1,6 @@
 <template>
     <template v-if="item?.meta?.icon">
-        <span>图标</span>
+        <antIcon :icon="item?.meta?.icon as string"></antIcon>
     </template>
     <span v-show="!$props.collasped"> {{ item?.meta?.title }}</span>
 </template>
@@ -8,6 +8,7 @@
 <script setup lang="ts">
 import type { PropType } from 'vue';
 import type { RouteRecordRaw } from 'vue-router';
+import { antIcon } from '@/components/icon';
 
 defineProps({
     collasped: {
