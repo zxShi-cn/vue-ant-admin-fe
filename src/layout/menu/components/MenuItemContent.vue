@@ -1,6 +1,6 @@
 <template>
     <template v-if="item?.meta?.icon">
-        <antIcon :icon="item?.meta?.icon as string"></antIcon>
+        <antIcon :icon="item?.meta?.icon as any"></antIcon>
     </template>
     <span v-show="!$props.collasped"> {{ item?.meta?.title }}</span>
 </template>
