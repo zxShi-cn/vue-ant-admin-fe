@@ -6,7 +6,7 @@ import axios, { CanceledError, type AxiosInstance, type AxiosRequestConfig, type
 const UNKNOWN_ERROR = '未知错误，请重试';
 
 // 请求路径前缀
-export const baseApiUrl = import.meta.env.VITE_BASE_API_URL;
+export const baseApiUrl = import.meta.env.VITE_GLOB_API_URL;
 
 // 实现取消请求
 const controller = new AbortController();

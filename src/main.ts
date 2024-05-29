@@ -5,9 +5,9 @@ import { createPinia } from 'pinia'
 
 import App from './App.vue'
 import { setupRouter } from './router'
-import Antd from 'ant-design-vue';
 import 'ant-design-vue/dist/reset.css';
 import { createPersistedState } from 'pinia-plugin-persistedstate'
+import { registerGlobComp } from './components/globalRegister'
 
 const app = createApp(App)
 const pinia = createPinia();
@@ -21,8 +21,8 @@ async function setupApp() {
     })
   )
 
-  // 使用ant组件库
-  app.use(Antd)
+  // 按需加载
+  registerGlobComp(app);
 
   // 使用pinia进行状态管理
   app.use(pinia)

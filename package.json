@@ -1,6 +1,6 @@
 {
   "name": "vue-ant-admin-fe",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "author": {
     "name": "shizhaoxiang",
     "email": "2490524679@qq.com",
@@ -27,6 +27,7 @@
     "nprogress": "^0.2.0",
     "pinia": "^2.1.7",
     "pinia-plugin-persistedstate": "^3.2.1",
+    "terser": "^5.31.0",
     "vue": "^3.4.21",
     "vue-router": "^4.3.0"
   },
